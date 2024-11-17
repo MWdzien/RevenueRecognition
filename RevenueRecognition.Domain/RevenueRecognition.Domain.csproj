@@ -10,4 +10,8 @@
       <ProjectReference Include="..\RevenueRecognition.Shared.Abstractions\RevenueRecognition.Shared.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Events\" />
+    </ItemGroup>
+
 </Project>

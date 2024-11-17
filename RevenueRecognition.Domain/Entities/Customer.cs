@@ -1,13 +1,18 @@
 using RevenueRecognition.Domain.ValueObjects;
+using RevenueRecognition.Shared.Abstractions.Domain;
 
 namespace RevenueRecognition.Domain.Entities;
 
 public abstract class Customer
 {
-    public Guid ClientId { get; private set; }
+    // im treating email as the customerId (every client should have a unique email)
+    public CustomerEmail Email { get; protected set; }
 
-    private CustomerAddress _address;
-    private CustomerEmail _email;
-    private CustomerPhoneNumber _phoneNumber;
+    protected CustomerAddress Address { get; set; }
+    protected CustomerPhoneNumber PhoneNumber { get; set; }
+    protected bool IsDeleted;
+
+    public abstract void MarkAsDeleted();
+
 
 }
