@@ -8,12 +8,23 @@ public class CompanyCustomer : Customer
     private CustomerName _companyName;
     private CustomerKrs _krs;
 
-    internal CompanyCustomer(CustomerName companyName, CustomerKrs krs, CustomerAddress address, CustomerEmail email, CustomerPhoneNumber phoneNumber)
+    internal CompanyCustomer(CustomerEmail email, CustomerAddress address, CustomerPhoneNumber phoneNumber, CustomerName companyName, CustomerKrs krs)
     {
+        Email = email;
+        Address = address;
+        PhoneNumber = phoneNumber;
         _companyName = companyName;
         _krs = krs;
+    }
+
+    public CompanyCustomer()
+    {
+    }
+
+    public void Update(CustomerAddress address, CustomerPhoneNumber phoneNumber, CustomerName companyName)
+    {
+        _companyName = companyName;
         Address = address;
-        Email = email;
         PhoneNumber = phoneNumber;
     }
 

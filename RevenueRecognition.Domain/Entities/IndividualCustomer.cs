@@ -8,14 +8,26 @@ public class IndividualCustomer : Customer
     private CustomerName _lastName;
     private CustomerPesel _pesel;
 
-    internal IndividualCustomer(CustomerName firstName, CustomerName lastName, CustomerPesel pesel, CustomerAddress address, CustomerEmail email, CustomerPhoneNumber phoneNumber)
+    internal IndividualCustomer(CustomerEmail email, CustomerAddress address, CustomerPhoneNumber phoneNumber, CustomerName firstName, CustomerName lastName, CustomerPesel pesel)
     {
+        Email = email;
+        Address = address;
+        PhoneNumber = phoneNumber;
         _firstName = firstName;
         _lastName = lastName;
         _pesel = pesel;
+    }
+
+    public IndividualCustomer()
+    {
+    }
+
+    public void Update(CustomerAddress address, CustomerPhoneNumber phoneNumber, CustomerName firstName, CustomerName lastName)
+    {
         Address = address;
-        Email = email;
         PhoneNumber = phoneNumber;
+        _firstName = firstName;
+        _lastName = lastName;
     }
 
     // soft delete 

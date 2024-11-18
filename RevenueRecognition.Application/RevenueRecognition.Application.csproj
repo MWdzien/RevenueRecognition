@@ -7,7 +7,8 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <ProjectReference Include="..\RevenueRecognition.Domain\RevenueRecognition.Domain.scproj" />
+        <ProjectReference Include="..\RevenueRecognition.Domain\RevenueRecognition.Domain.csproj" />
+        <ProjectReference Include="..\RevenueRecognition.Shared\RevenueRecognition.Shared.csproj" />
     </ItemGroup>
-
+   
 </Project>

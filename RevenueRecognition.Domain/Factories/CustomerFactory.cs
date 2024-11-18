@@ -3,15 +3,15 @@ using RevenueRecognition.Domain.ValueObjects;
 
 namespace RevenueRecognition.Domain.Factories;
 
-internal class CutomerFactory : ICustomerFactory
+public sealed class CustomerFactory : ICustomerFactory
 {
     public IndividualCustomer CreateIndividualCustomer(CustomerEmail email, CustomerAddress address,
         CustomerPhoneNumber phoneNumber, CustomerName firstName, CustomerName lastName, CustomerPesel pesel) 
-        => new(firstName, lastName, pesel, address, email, phoneNumber);
+        => new(email, address, phoneNumber, firstName, lastName, pesel);
 
 
     public CompanyCustomer CreateCompanyCustomer(CustomerEmail email, CustomerAddress address,
         CustomerPhoneNumber phoneNumber,
         CustomerName companyName, CustomerKrs krs) 
-        => new(companyName, krs, address, email, phoneNumber);
+        => new(email, address, phoneNumber, companyName, krs);
 }
