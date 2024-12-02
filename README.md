@@ -8,7 +8,10 @@ I also decided to separate the Individual Customer from Company Customer and mak
 attributes from common Customer class.
 
 Project context:
-The aim of this project is to create a system responsible for calculation of the company revenue. It faces the problem of when to recognize the payment as part of the company revenue. (For example if the company provides paid services such as selling software for some period of time, it should only recognize the revenue when the payment for the entire period is completed) 
+The aim of this project is to create a system responsible for handling product (software) purchases in the form of subscriptions as well as calculation of the company revenue. 
+It faces the problem of when to recognize the payment as part of the company revenue. 
+(For example if the company provides paid services such as selling software for some period of time,
+it should only recognize the revenue when the payment for the entire period is completed) 
 
 Functional requirements
 

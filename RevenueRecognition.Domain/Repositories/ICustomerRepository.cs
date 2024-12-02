@@ -5,7 +5,7 @@ namespace RevenueRecognition.Domain.Repositories;
 
 public interface ICustomerRepository
 {
-    Task<Customer> GetAsync(CustomerEmail email);
+    Task<Customer> GetAsync(CustomerId customerId);
     Task AddIndividualAsync(IndividualCustomer customer);
     Task AddCompanyAsync(CompanyCustomer customer);
     Task UpdateIndividualAsync(IndividualCustomer customer);

@@ -5,14 +5,20 @@ namespace RevenueRecognition.Domain.Entities;
 
 public abstract class Customer
 {
-    // im treating email as the customerId (every client should have a unique email)
-    public CustomerEmail Email { get; protected set; }
-
+    public CustomerId CustomerId { get; protected set; } // = Guid.NewGuid();
+    
+    protected CustomerEmail Email { get; set; }
     protected CustomerAddress Address { get; set; }
     protected CustomerPhoneNumber PhoneNumber { get; set; }
     protected bool IsDeleted;
 
+    protected Customer()
+    {
+    }
+
     public abstract void MarkAsDeleted();
+    
+    
 
 
 }

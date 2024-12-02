@@ -18,15 +18,15 @@ public class UpdateCompanyCustomerHandler : ICommandHandler<UpdateCompanyCustome
 
     public async Task HandleAsync(UpdateCompanyCustomer command)
     {
-        var (email, address, phoneNumber, companyName) = command;
+        var (customerId, email, address, phoneNumber, companyName) = command;
 
-        var customer = await _customerRepository.GetAsync(email);
+        var customer = await _customerRepository.GetAsync(customerId);
 
         if (customer is null)
-            throw new CustomerNotFoundException(email);
+            throw new CustomerNotFoundException(customerId);
 
         if (customer is not CompanyCustomer companyCustomer)
-            throw new WrongCustomerTypeException(CustomerType.CompanyCustomer, email);
+            throw new WrongCustomerTypeException(CustomerType.CompanyCustomer, customerId);
 
         companyCustomer.Update(address, phoneNumber, companyName);
 

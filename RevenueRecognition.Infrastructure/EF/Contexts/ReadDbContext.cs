@@ -6,7 +6,6 @@ namespace RevenueRecognition.Infrastructure.EF.Contexts;
 
 internal sealed class ReadDbContext : DbContext
 {
-    public DbSet<CustomerReadModel> Customers { get; set; }
     public DbSet<IndividualCustomerReadModel> IndividualCustomers { get; set; }
     public DbSet<CompanyCustomerReadModel> CompanyCustomers { get; set; }
 
@@ -14,7 +13,7 @@ internal sealed class ReadDbContext : DbContext
     {
     }
 
-    public ReadDbContext(DbContextOptions options) : base(options)
+    public ReadDbContext(DbContextOptions<ReadDbContext> options) : base(options)
     {
     }
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RevenueRecognition.Domain.Entities;
+using RevenueRecognition.Infrastructure.EF.Config;
 
 namespace RevenueRecognition.Infrastructure.EF.Contexts;
 
@@ -13,13 +14,17 @@ internal sealed class WriteDbContext : DbContext
     {
     }
 
-    public WriteDbContext(DbContextOptions options) : base(options)
+    public WriteDbContext(DbContextOptions<WriteDbContext> options) : base(options)
     {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("default");
-        base.OnModelCreating(modelBuilder);
+        
+        var configuration = new WriteConfiguration();
+        modelBuilder.ApplyConfiguration<Customer>(configuration);
+        modelBuilder.ApplyConfiguration<IndividualCustomer>(configuration);
+        modelBuilder.ApplyConfiguration<CompanyCustomer>(configuration);
     }
 }

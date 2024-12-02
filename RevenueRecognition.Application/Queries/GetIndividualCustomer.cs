@@ -5,5 +5,5 @@ namespace RevenueRecognition.Application.Queries;
 
 public class GetIndividualCustomer : IQuery<IndividualCustomerDTO>
 {
-    public string Email { get; set; }
+    public Guid CustomerId { get; set; }
 }
