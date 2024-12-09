@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevenueRecognition.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevenueRecognition.Shared.Abstractions", "RevenueRecognition.Shared.Abstractions\RevenueRecognition.Shared.Abstractions.csproj", "{1185CAB8-BA5C-4F47-850C-E58B109EBB9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{64796891-1C77-4848-AA84-D91B41FFB9A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevenueRecognition.Tests", "RevenueRecognition.Tests\RevenueRecognition.Tests.csproj", "{EF72D10A-8249-416D-8A08-42CECBA8FBD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,10 @@ Global
 		{1185CAB8-BA5C-4F47-850C-E58B109EBB9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1185CAB8-BA5C-4F47-850C-E58B109EBB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1185CAB8-BA5C-4F47-850C-E58B109EBB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF72D10A-8249-416D-8A08-42CECBA8FBD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF72D10A-8249-416D-8A08-42CECBA8FBD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF72D10A-8249-416D-8A08-42CECBA8FBD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF72D10A-8249-416D-8A08-42CECBA8FBD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{09728286-3084-42B1-9952-27A400F132AF} = {DEA92CBE-ADD1-4BD3-A876-6A574354AE6A}
@@ -55,5 +63,6 @@ Global
 		{6B124B5C-1C26-49A1-A7EA-125DCACA8837} = {DEA92CBE-ADD1-4BD3-A876-6A574354AE6A}
 		{9FD302ED-B00B-429D-B87B-2F604E3FFE58} = {09728286-3084-42B1-9952-27A400F132AF}
 		{1185CAB8-BA5C-4F47-850C-E58B109EBB9F} = {09728286-3084-42B1-9952-27A400F132AF}
+		{EF72D10A-8249-416D-8A08-42CECBA8FBD9} = {64796891-1C77-4848-AA84-D91B41FFB9A4}
 	EndGlobalSection
 EndGlobal

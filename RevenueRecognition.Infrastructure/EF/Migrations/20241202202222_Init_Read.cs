@@ -15,23 +15,6 @@ namespace RevenueRecognition.Infrastructure.EF.Migrations
                 name: "default");
 
             migrationBuilder.CreateTable(
-                name: "CompanyCustomers",
-                schema: "default",
-                columns: table => new
-                {
-                    CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    CompanyName = table.Column<string>(type: "text", nullable: false),
-                    Krs = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompanyCustomers", x => x.CustomerId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Customers",
                 schema: "default",
                 columns: table => new
@@ -39,11 +22,33 @@ namespace RevenueRecognition.Infrastructure.EF.Migrations
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false)
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.CustomerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyCustomers",
+                schema: "default",
+                columns: table => new
+                {
+                    CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CompanyName = table.Column<string>(type: "text", nullable: false),
+                    Krs = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyCustomers", x => x.CustomerId);
+                    table.ForeignKey(
+                        name: "FK_CompanyCustomers_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalSchema: "default",
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,9 +57,6 @@ namespace RevenueRecognition.Infrastructure.EF.Migrations
                 columns: table => new
                 {
                     CustomerId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Pesel = table.Column<string>(type: "text", nullable: false)
@@ -62,6 +64,13 @@ namespace RevenueRecognition.Infrastructure.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IndividualCustomers", x => x.CustomerId);
+                    table.ForeignKey(
+                        name: "FK_IndividualCustomers_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalSchema: "default",
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
@@ -73,11 +82,11 @@ namespace RevenueRecognition.Infrastructure.EF.Migrations
                 schema: "default");
 
             migrationBuilder.DropTable(
-                name: "Customers",
+                name: "IndividualCustomers",
                 schema: "default");
 
             migrationBuilder.DropTable(
-                name: "IndividualCustomers",
+                name: "Customers",
                 schema: "default");
         }
     }

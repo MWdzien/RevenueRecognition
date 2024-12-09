@@ -7,6 +7,7 @@ public class IndividualCustomer : Customer
     private CustomerName _firstName;
     private CustomerName _lastName;
     private CustomerPesel _pesel;
+    public bool IsDeleted { get; private set;  }
 
     internal IndividualCustomer(CustomerEmail email, CustomerAddress address, CustomerPhoneNumber phoneNumber, CustomerName firstName, CustomerName lastName, CustomerPesel pesel)
     {
@@ -16,9 +17,10 @@ public class IndividualCustomer : Customer
         _firstName = firstName;
         _lastName = lastName;
         _pesel = pesel;
+        IsDeleted = false;
     }
 
-    public IndividualCustomer()
+    private IndividualCustomer()
     {
     }
 
@@ -34,11 +36,5 @@ public class IndividualCustomer : Customer
     public override void MarkAsDeleted()
     {
         IsDeleted = true;
-        _firstName = "[deleted]";
-        _lastName = "[deleted]";
-        _pesel = "[deleted]";
-        Address = "[deleted]";
-        Email = "[deleted]";
-        PhoneNumber = "[deleted]";
     }
 }

@@ -17,15 +17,18 @@ public class UpdateIndividualCustomerHandler : ICommandHandler<UpdateIndividualC
 
     public async Task HandleAsync(UpdateIndividualCustomer command)
     {
-        var (customerId, email, address, phoneNumber, firstName, lastName) = command;
+        var (email, address, phoneNumber, firstName, lastName) = command;
 
-        var customer = await _customerRepository.GetAsync(customerId);
+        var customer = await _customerRepository.GetAsync(email);
         
         if (customer is null)
-            throw new CustomerNotFoundException(customerId);
+            throw new CustomerNotFoundException(email);
         
         if (customer is not IndividualCustomer individualCustomer)
-            throw new WrongCustomerTypeException(CustomerType.IndividualCustomer, customerId);
+            throw new WrongCustomerTypeException(CustomerType.IndividualCustomer, email);
+
+        if (individualCustomer.IsDeleted)
+            throw new CustomerDeletedException(email);
         
         individualCustomer.Update(address, phoneNumber,firstName, lastName);
         

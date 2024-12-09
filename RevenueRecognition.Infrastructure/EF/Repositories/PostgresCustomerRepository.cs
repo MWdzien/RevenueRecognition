@@ -21,10 +21,10 @@ internal sealed class PostgresCustomerRepository : ICustomerRepository
         _writeDbContext = writeDbContext;
     }
 
-    public Task<Customer> GetAsync(CustomerId customerId)
+    public Task<Customer> GetAsync(CustomerEmail email)
         => _customers
             //.Include("_contracts")
-            .SingleOrDefaultAsync(c => c.CustomerId == customerId);
+            .SingleOrDefaultAsync(c => c.Email == email);
 
     public async Task AddIndividualAsync(IndividualCustomer customer)
     {

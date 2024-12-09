@@ -15,20 +15,20 @@ internal sealed class GetIndividualCustomerHandler : IQueryHandler<GetIndividual
 
     public async Task<IndividualCustomerDTO> HandleAsync(GetIndividualCustomer query)
     {
+        Console.WriteLine(query);
         return await _individualCustomers
             //.Include() - load contracts
-            .Where(cc => cc.CustomerId == query.CustomerId)
-            .Select(ic =>
+            .Where(c => c.Email == query.Email && !c.IsDeleted)
+            .Select(c =>
                 new
                     IndividualCustomerDTO() //I might reuse that part of a code - optional: implement AsDto() method in extensions class
                     {
-                        CustomerId = ic.CustomerId,
-                        Email = ic.Email,
-                        Address = ic.Address,
-                        PhoneNumber = ic.PhoneNumber,
-                        FirstName = ic.FirstName,
-                        LastName = ic.LastName,
-                        Pesel = ic.Pesel
+                        Email = c.Email,
+                        Address = c.Address,
+                        PhoneNumber = c.PhoneNumber,
+                        FirstName = c.FirstName,
+                        LastName = c.LastName,
+                        Pesel = c.Pesel
                     })
             .AsNoTracking() //no need for tracking when I don't update the data
             .SingleOrDefaultAsync();

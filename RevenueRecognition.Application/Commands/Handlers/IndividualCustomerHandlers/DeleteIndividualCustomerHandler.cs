@@ -17,15 +17,15 @@ public class DeleteIndividualCustomerHandler : ICommandHandler<DeleteIndividualC
 
     public async Task HandleAsync(DeleteIndividualCustomer command)
     {
-        var customerId = command.CustomerId;
+        var email = command.Email;
         
-        var customer = await _customerRepository.GetAsync(customerId);
+        var customer = await _customerRepository.GetAsync(email);
 
         if (customer is null)
-            throw new CustomerNotFoundException(customerId);
+            throw new CustomerNotFoundException(email);
 
         if (customer is not IndividualCustomer individualCustomer)
-            throw new WrongCustomerTypeException(CustomerType.IndividualCustomer, customerId);
+            throw new WrongCustomerTypeException(CustomerType.IndividualCustomer, email);
         
         individualCustomer.MarkAsDeleted();
         

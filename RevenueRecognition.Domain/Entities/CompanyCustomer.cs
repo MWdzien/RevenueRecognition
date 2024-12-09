@@ -17,7 +17,7 @@ public class CompanyCustomer : Customer
         _krs = krs;
     }
 
-    public CompanyCustomer()
+    private CompanyCustomer()
     {
     }
 

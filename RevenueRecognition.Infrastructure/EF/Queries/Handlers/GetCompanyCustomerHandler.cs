@@ -16,19 +16,20 @@ internal sealed class GetCompanyCustomerHandler : IQueryHandler<GetCompanyCustom
 
     public async Task<CompanyCustomerDTO> HandleAsync(GetCompanyCustomer query)
     {
+        Console.WriteLine(query.Email);
+        Console.WriteLine(query.Email);
         return await _companyCustomers
             //.Include() - load contracts
-            .Where(cc => cc.CustomerId == query.CustomerId)
-            .Select(cc =>
+            .Where(c => c.Email == query.Email)
+            .Select(c =>
                 new
                     CompanyCustomerDTO() //I might reuse that part of a code - optional: implement AsDto() method in extensions class
                     {
-                        CustomerId = cc.CustomerId,
-                        Email = cc.Email,
-                        Address = cc.Address,
-                        PhoneNumber = cc.PhoneNumber,
-                        CompanyName = cc.CompanyName,
-                        Krs = cc.Krs
+                        Email = c.Email,
+                        Address = c.Address,
+                        PhoneNumber = c.PhoneNumber,
+                        CompanyName = c.CompanyName,
+                        Krs = c.Krs
                     })
             .AsNoTracking() //no need for tracking when I don't update the data
             .SingleOrDefaultAsync();

@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -22,9 +24,15 @@ internal sealed class AppInitializer : IHostedService
         using var scope = _serviceProvider.CreateScope();
         foreach (var dbContextType in dbContextTypes)
         {
-            var dbContext = scope.ServiceProvider.GetRequiredService(dbContextType) as DbContext;
+            var dbContext = scope.ServiceProvider.GetService(dbContextType) as DbContext;
             
             if (dbContext is null) continue;
+            
+            var migrator = dbContext.GetService<IMigrator>();
+            
+            
+            if (!dbContext.Database.GetMigrations().Any())
+                continue;
 
             await dbContext.Database.MigrateAsync(cancellationToken);
         }

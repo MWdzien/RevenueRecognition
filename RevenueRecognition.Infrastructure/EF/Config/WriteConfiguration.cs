@@ -10,26 +10,20 @@ internal sealed class WriteConfiguration : IEntityTypeConfiguration<Customer>, I
 {
     public void Configure(EntityTypeBuilder<Customer> builder)
     {
-        builder.HasKey(c => c.CustomerId);
+        builder.HasKey(c => c.Email);
 
         var customerEmailConverter = new ValueConverter<CustomerEmail, string>(
-            e => e.ToString(),
+            e => e.Value,
             e => new CustomerEmail(e)
         );
         var customerAddressConverter = new ValueConverter<CustomerAddress, string>(
-            a => a.ToString(),
+            a => a.Value,
             a => new CustomerAddress(a)
         );
         var customerPhoneNumberConverter = new ValueConverter<CustomerPhoneNumber, string>(
-            p => p.ToString(),
+            p => p.Value,
             p => new CustomerPhoneNumber(p)
         );
-
-        builder.Property(c => c.CustomerId)
-            .HasConversion(
-                id => id.Value,
-                id => new CustomerId(id)
-            );
 
         builder.Property(typeof(CustomerEmail), "Email")
             .HasConversion(customerEmailConverter)
@@ -53,12 +47,12 @@ internal sealed class WriteConfiguration : IEntityTypeConfiguration<Customer>, I
         builder.HasBaseType<Customer>();
 
         var nameConverter = new ValueConverter<CustomerName, string>(
-            n => n.ToString(),
+            n => n.Value,
             n => new CustomerName(n)
         );
         
         var peselConverter = new ValueConverter<CustomerPesel, string>(
-            p => p.ToString(),
+            p => p.Value,
             p => new CustomerPesel(p)
         );
 
@@ -74,7 +68,7 @@ internal sealed class WriteConfiguration : IEntityTypeConfiguration<Customer>, I
             .HasConversion(peselConverter)
             .HasColumnName("Pesel");
 
-        builder.ToTable("IndividualCustomer");
+        builder.ToTable("IndividualCustomers");
     }
 
     public void Configure(EntityTypeBuilder<CompanyCustomer> builder)
@@ -82,12 +76,12 @@ internal sealed class WriteConfiguration : IEntityTypeConfiguration<Customer>, I
         builder.HasBaseType<Customer>();
 
         var nameConverter = new ValueConverter<CustomerName, string>(
-            n => n.ToString(),
+            n => n.Value,
             n => new CustomerName(n)
         );
 
         var krsConverter = new ValueConverter<CustomerKrs, string>(
-            k => k.ToString(),
+            k => k.Value,
             k => new CustomerKrs(k)
         );
         

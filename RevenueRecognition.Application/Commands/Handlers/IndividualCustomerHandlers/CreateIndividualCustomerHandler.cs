@@ -1,3 +1,4 @@
+using RevenueRecognition.Application.Commands.IndividualCustomerCommands;
 using RevenueRecognition.Application.Exceptions;
 using RevenueRecognition.Application.Services;
 using RevenueRecognition.Domain.Factories;

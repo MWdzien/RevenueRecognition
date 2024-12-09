@@ -3,7 +3,7 @@ using RevenueRecognition.Shared.Enums;
 
 namespace RevenueRecognition.Application.Exceptions;
 
-public class WrongCustomerTypeException(CustomerType customerType, Guid customerId) : RevenueRecognitionException($"customer with ID {customerId} is not {customerType}")
+public class WrongCustomerTypeException(CustomerType customerType, string email) : RevenueRecognitionException($"customer with email {email} is not {customerType}")
 {
     
 }

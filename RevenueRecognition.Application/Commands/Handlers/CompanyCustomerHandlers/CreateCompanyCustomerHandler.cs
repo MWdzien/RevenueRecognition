@@ -28,7 +28,7 @@ public class CreateCompanyCustomerHandler : ICommandHandler<CreateCompanyCustome
             throw new CustomerAlreadyExistsException("email", email);
 
         if (await _customerReadService.ExistsByKrsAsync(krs))
-            throw new CustomerAlreadyExistsException("pesel", krs);
+            throw new CustomerAlreadyExistsException("krs", krs);
 
         var customer =
             _customerFactory.CreateCompanyCustomer(email, address, phoneNumber, companyName, krs);
