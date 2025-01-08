@@ -1,4 +1,5 @@
 using RevenueRecognition.Domain.Exceptions;
+using RevenueRecognition.Domain.Exceptions.CustomerExceptions;
 
 namespace RevenueRecognition.Domain.ValueObjects;
 
@@ -10,7 +11,7 @@ public class CustomerKrs
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerKrs));
+            throw new EmptyAttributeException("Customer", nameof(CustomerKrs));
         }
 
         if (value.Length != 10 || !value.All(char.IsDigit))

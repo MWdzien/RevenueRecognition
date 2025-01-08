@@ -11,7 +11,7 @@ public record CustomerAddress
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerAddress));
+            throw new EmptyAttributeException("Customer", nameof(CustomerAddress));
         }
 
         Value = value;

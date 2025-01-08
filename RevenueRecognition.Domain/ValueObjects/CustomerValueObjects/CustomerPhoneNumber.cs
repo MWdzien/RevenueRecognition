@@ -1,4 +1,5 @@
 using RevenueRecognition.Domain.Exceptions;
+using RevenueRecognition.Domain.Exceptions.CustomerExceptions;
 
 namespace RevenueRecognition.Domain.ValueObjects;
 
@@ -13,7 +14,7 @@ public record CustomerPhoneNumber
         
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerPhoneNumber));
+            throw new EmptyAttributeException("Customer", nameof(CustomerPhoneNumber));
         }
 
         if (value.StartsWith("+") || value.Length < 9 || !value.Replace("+", "").All(char.IsDigit))

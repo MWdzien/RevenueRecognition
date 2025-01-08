@@ -1,4 +1,5 @@
 using RevenueRecognition.Domain.Exceptions;
+using RevenueRecognition.Domain.Exceptions.CustomerExceptions;
 using RevenueRecognition.Domain.ValueObjects;
 
 namespace RevenueRecognition.Domain.Entities;

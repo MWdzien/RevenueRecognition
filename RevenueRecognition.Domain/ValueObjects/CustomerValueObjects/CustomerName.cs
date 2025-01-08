@@ -10,7 +10,7 @@ public record CustomerName
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerName));
+            throw new EmptyAttributeException("Customer", nameof(CustomerName));
         }
 
         Value = value;

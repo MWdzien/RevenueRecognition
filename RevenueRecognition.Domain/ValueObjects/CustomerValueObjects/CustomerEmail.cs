@@ -1,4 +1,5 @@
 using RevenueRecognition.Domain.Exceptions;
+using RevenueRecognition.Domain.Exceptions.CustomerExceptions;
 
 namespace RevenueRecognition.Domain.ValueObjects;
 
@@ -10,7 +11,7 @@ public record CustomerEmail
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerEmail));
+            throw new EmptyAttributeException("Customer", nameof(CustomerEmail));
         }
 
         // should be using regex, but wanted to make it look simpler

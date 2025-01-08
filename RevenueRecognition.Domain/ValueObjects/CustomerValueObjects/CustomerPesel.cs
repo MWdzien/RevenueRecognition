@@ -1,4 +1,5 @@
 using RevenueRecognition.Domain.Exceptions;
+using RevenueRecognition.Domain.Exceptions.CustomerExceptions;
 
 namespace RevenueRecognition.Domain.ValueObjects;
 
@@ -10,7 +11,7 @@ public class CustomerPesel
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new EmptyCustomerAttributeException(nameof(CustomerPesel));
+            throw new EmptyAttributeException("Customer", nameof(CustomerPesel));
         }
 
         if (value.Length != 11 || !value.All(char.IsDigit))
